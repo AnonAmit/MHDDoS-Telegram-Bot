@@ -56,7 +56,7 @@ chmod +x mhddos_setup.sh
 
 #### Windows Systems
 
-1. Download the automatic setup script `mhddos_setup.bat` from the repository
+1. Download the automatic setup script [`mhddos_setup.bat`](https://github.com/AnonAmit/MHDDoS-Telegram-Bot/blob/a9f4a87ef3de78f0daed147cf53db8721d7d088f/mhddos_setup.bat) from the repository
 
 2. Run the script by double-clicking it
 
