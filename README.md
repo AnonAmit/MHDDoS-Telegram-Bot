@@ -277,4 +277,3 @@ Under the following terms:
 - You may not use the material for commercial purposes
 - You may not apply legal terms that legally restrict others from doing anything the license permits
 
-For the full license text, see the [LICENSE](LICENSE) file or visit: [CC BY-NC 4.0](http://creativecommons.org/licenses/by-nc/4.0/)
