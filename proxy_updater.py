@@ -10,7 +10,11 @@ import requests
 import logging
 import schedule
 from datetime import datetime
-from config import MHDDOS_PATH, PROXY_PATH
+try:
+    from config import MHDDOS_PATH, PROXY_PATH
+except ImportError:
+    MHDDOS_PATH = os.path.dirname(os.path.abspath(__file__))
+    PROXY_PATH = "proxies.txt"
 
 # Configure logging
 logging.basicConfig(

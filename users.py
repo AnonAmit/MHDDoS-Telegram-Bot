@@ -458,13 +458,13 @@ def generate_redeem_code(admin_id: int, plan_id: str, count: int = 1) -> List[st
             redeem_codes = json.load(f)
     
     # Generate new codes
-    import random
+    import secrets
     import string
     
     new_codes = []
     for _ in range(count):
         # Generate a random 16-character code
-        code = ''.join(random.choices(string.ascii_uppercase + string.digits, k=16))
+        code = ''.join(secrets.choice(string.ascii_uppercase + string.digits) for _ in range(16))
         code = f"{plan_id[:3].upper()}-{code[:4]}-{code[4:8]}-{code[8:12]}-{code[12:]}"
         
         redeem_codes[code] = {
