@@ -273,12 +273,14 @@ def _execute_scheduled_attack(schedule_id: str, schedule: Dict[str, Any],
         attack_callback(target, method, threads, duration, proxy_type)
         
         # Update schedule
-        _update_schedule_after_execution(schedule_id, schedule)
+        _update_schedule_after_execution(schedule_id, schedule, attack_callback, template_callback)
         
     except Exception as e:
         logger.error(f"Error executing scheduled attack {schedule_id}: {str(e)}")
 
-def _update_schedule_after_execution(schedule_id: str, schedule: Dict[str, Any]) -> None:
+def _update_schedule_after_execution(schedule_id: str, schedule: Dict[str, Any],
+                                    attack_callback: AttackCallback,
+                                    template_callback: Optional[Callable[[str], Dict[str, Any]]] = None) -> None:
     """Update the schedule after an attack has been executed"""
     # Load the latest schedule to avoid conflicts
     all_schedules = load_schedule()
@@ -308,8 +310,8 @@ def _update_schedule_after_execution(schedule_id: str, schedule: Dict[str, Any])
                 schedule_id, 
                 all_schedules[schedule_id], 
                 (next_time - datetime.datetime.now()).total_seconds(),
-                _get_callback_from_schedules(),
-                None  # We don't have template callback here
+                attack_callback,
+                template_callback
             )
             
         except (ValueError, KeyError) as e:
